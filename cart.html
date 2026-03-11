@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart - Tsawq.ae</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #00A651;
+            --primary-dark: #008842;
+            --primary-light: #e8f5e9;
+            --secondary: #D4AF37;
+            --dark: #1a1a2e;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+            --white: #ffffff;
+            --danger: #ef4444;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --header-height: 70px;
+            --mobile-padding: 16px;
+            --tablet-padding: 24px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 65px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font: inherit;
+            background: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--mobile-padding);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 var(--tablet-padding);
+            }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.6rem;
+            }
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 40px 0 60px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 1.75rem;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 12px;
+            }
+        }
+
+        .section {
+            padding: 40px 0;
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+        }
+
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 992px) {
+            .cart-grid {
+                grid-template-columns: 1fr 380px;
+                gap: 40px;
+            }
+        }
+
+        .cart-items {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (min-width: 768px) {
+            .cart-items {
+                padding: 28px;
+            }
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 80px 1fr auto;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid #e5e7eb;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .cart-item {
+                grid-template-columns: 100px 1fr auto auto;
+                gap: 20px;
+                padding: 20px 0;
+            }
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--gray-light);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .item-image {
+                width: 100px;
+                height: 100px;
+                font-size: 3rem;
+            }
+        }
+
+        .item-info h3 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        @media (min-width: 768px) {
+            .item-info h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        .item-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius);
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .qty-value {
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .item-price {
+            text-align: right;
+        }
+
+        .price-current {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .price-original {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 0.85rem;
+            display: block;
+        }
+
+        .remove-btn {
+            color: var(--danger);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .remove-btn:hover {
+            text-decoration: underline;
+        }
+
+        .cart-summary {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 90px;
+        }
+
+        @media (min-width: 768px) {
+            .cart-summary {
+                padding: 28px;
+            }
+        }
+
+        .summary-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid #e5e7eb;
+            padding-top: 16px;
+            margin-top: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .progress-container {
+            background: var(--gray-light);
+            border-radius: var(--radius-full);
+            height: 8px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-gold);
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-light));
+            width: 70%;
+            border-radius: var(--radius-full);
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-align: center;
+        }
+
+        .promo-code {
+            display: flex;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .promo-code input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius);
+            font-size: 14px;
+        }
+
+        .promo-code input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .promo-code button {
+            padding: 12px 20px;
+            background: var(--dark);
+            color: white;
+            border-radius: var(--radius);
+            font-weight: 600;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            transition: all 0.3s var(--ease-spring);
+        }
+
+        .checkout-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .continue-shopping {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .continue-shopping a {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-cart-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .empty-cart p {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            opacity: 0.75;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 900;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 6px 10px;
+            color: var(--gray);
+            font-size: 10px;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><i data-lucide="shopping-cart" style="width:26px;height:26px;"></i>
+                Tsawq.ae</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Shopping Cart</h1>
+                <p>3 items in your cart</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="cart-grid">
+                    <div class="cart-items">
+                        <div class="cart-item">
+                            <div class="item-image">🥛</div>
+                            <div class="item-info">
+                                <h3>Almarai Fresh Milk 2L</h3>
+                                <p>Full Cream, Fresh</p>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="qty-btn" onclick="updateQty(this, -1)">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <div class="item-price">
+                                <span class="price-current">AED 11.50</span>
+                                <span class="price-original">AED 17.50</span>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-image">🍞</div>
+                            <div class="item-info">
+                                <h3>Fresh Bread</h3>
+                                <p>Whole Wheat, 600g</p>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="qty-btn" onclick="updateQty(this, -1)">−</button>
+                                <span class="qty-value">2</span>
+                                <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <div class="item-price">
+                                <span class="price-current">AED 8.00</span>
+                            </div>
+                        </div>
+
+                        <div class="cart-item">
+                            <div class="item-image">🥚</div>
+                            <div class="item-info">
+                                <h3>Emirates Eggs</h3>
+                                <p>Large, 10 pcs</p>
+                            </div>
+                            <div class="item-quantity">
+                                <button class="qty-btn" onclick="updateQty(this, -1)">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" onclick="updateQty(this, 1)">+</button>
+                            </div>
+                            <div class="item-price">
+                                <span class="price-current">AED 9.99</span>
+                                <span class="price-original">AED 14.00</span>
+                            </div>
+                        </div>
+
+                        <a href="index.html" class="remove-btn" style="margin-top: 20px; display: inline-flex;"><i
+                                data-lucide="trash-2" style="width:16px;height:16px;"></i> Clear Cart</a>
+                    </div>
+
+                    <div class="cart-summary">
+                        <h2 class="summary-title">Order Summary</h2>
+
+                        <div class="progress-container">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <p class="progress-text">🎉 Spend AED 45 more for FREE delivery!</p>
+
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span>AED 29.49</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Delivery</span>
+                            <span>AED 15.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>VAT (5%)</span>
+                            <span>AED 1.47</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span>AED 45.96</span>
+                        </div>
+
+                        <div class="promo-code">
+                            <input type="text" placeholder="Promo code">
+                            <button>Apply</button>
+                        </div>
+
+                        <a href="checkout.html" class="checkout-btn">
+                            <i data-lucide="credit-card"></i> Proceed to Checkout
+                        </a>
+
+                        <div class="continue-shopping">
+                            <a href="index.html">← Continue Shopping</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Tsawq.ae. All rights reserved. | 🇦🇪 Dubai, UAE</p>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-item"><i data-lucide="home"></i><span>Home</span></a>
+        <a href="#" class="nav-item"><i data-lucide="search"></i><span>Search</span></a>
+        <a href="cart.html" class="nav-item active"><i data-lucide="shopping-bag"></i><span>Cart</span></a>
+        <a href="#" class="nav-item"><i data-lucide="user"></i><span>Account</span></a>
+    </nav>
+
+    <script>
+        lucide.createIcons();
+        function updateQty(btn, change) {
+            const qtyEl = btn.parentElement.querySelector('.qty-value');
+            let qty = parseInt(qtyEl.textContent);
+            qty = Math.max(1, qty + change);
+            qtyEl.textContent = qty;
+        }
+    </script>
+</body>
+
+</html>
