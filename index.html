@@ -1914,7 +1914,7 @@
                 <i data-lucide="menu" style="width:24px;height:24px;"></i>
             </button>
 
-            <a href="#" class="logo" aria-label="Tsawq Home">
+            <a href="index.html" class="logo" aria-label="Tsawq Home">
                 <i data-lucide="shopping-cart" style="width:26px;height:26px;"></i>
                 Tsawq.ae
             </a>
@@ -1933,7 +1933,7 @@
                     <i data-lucide="heart"></i>
                     <span>Saved</span>
                 </button>
-                <button class="cart-btn" aria-label="Shopping cart">
+                <button class="cart-btn" aria-label="Shopping cart" onclick="window.location.href='cart.html'">
                     <i data-lucide="shopping-bag"></i>
                     <span class="cart-count" id="cart-count">3</span>
                 </button>
@@ -2127,7 +2127,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo" style="color: white; font-size: 1.3rem;">
+                    <a href="index.html" class="logo" style="color: white; font-size: 1.3rem;">
                         <i data-lucide="shopping-cart" style="width:26px;height:26px;"></i>
                         Tsawq.ae
                     </a>
@@ -2147,7 +2147,7 @@
                 <div class="footer-links">
                     <h4>Shop</h4>
                     <ul>
-                        <li><a href="#">All Products</a></li>
+                        <li><a href="product.html">All Products</a></li>
                         <li><a href="#deals">Flash Deals</a></li>
                         <li><a href="#">New Arrivals</a></li>
                         <li><a href="#">Brands</a></li>
@@ -2158,16 +2158,16 @@
                     <h4>Help</h4>
                     <ul>
                         <li><a href="#">Track Order</a></li>
-                        <li><a href="#">Returns</a></li>
+                        <li><a href="faq.html">Returns</a></li>
                         <li><a href="#">Delivery Info</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-links">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="about.html">About Us</a></li>
                         <li><a href="#">Careers</a></li>
                         <li><a href="#">Blog</a></li>
                         <li><a href="#">Privacy</a></li>
@@ -2190,7 +2190,7 @@
 
     <!-- ===== MOBILE BOTTOM NAV ===== -->
     <nav class="mobile-nav" role="navigation" aria-label="Main navigation">
-        <a href="#" class="nav-item active" aria-current="page">
+        <a href="index.html" class="nav-item active" aria-current="page">
             <i data-lucide="home"></i>
             <span>Home</span>
         </a>
@@ -2198,7 +2198,7 @@
             <i data-lucide="zap"></i>
             <span>Deals</span>
         </a>
-        <a href="#" class="nav-item">
+        <a href="cart.html" class="nav-item">
             <i data-lucide="shopping-bag"></i>
             <span>Cart</span>
         </a>
@@ -2244,7 +2244,7 @@
         function renderCategories() {
             const grid = document.getElementById('category-grid');
             grid.innerHTML = categories.map((cat, i) => `
-        <a href="#" class="category-card reveal stagger-${(i % 4) + 1}">
+        <a href="product.html" class="category-card reveal stagger-${(i % 4) + 1}">
           <div class="category-icon">${cat.emoji}</div>
           <div class="category-name">${cat.name}</div>
         </a>
@@ -2254,11 +2254,11 @@
         function renderProducts() {
             const grid = document.getElementById('products-grid');
             grid.innerHTML = products.map((p, i) => `
-        <article class="product-card reveal stagger-${(i % 4) + 1}">
+        <article class="product-card reveal stagger-${(i % 4) + 1}" onclick="window.location.href='product.html'" style="cursor: pointer;">
           ${p.badge ? `<span class="badge ${p.gold ? 'badge-gold' : ''}">${p.badge}</span>` : ''}
           <div class="product-image">
             <div class="product-image-inner">${p.emoji}</div>
-            <button class="add-to-cart" aria-label="Add to cart" onclick="addToCart(this, '${p.name}')">+</button>
+            <button class="add-to-cart" aria-label="Add to cart" onclick="event.stopPropagation(); addToCart(this, '${p.name}')">+</button>
           </div>
           <div class="product-info">
             <h3 class="product-name">${p.name}</h3>
