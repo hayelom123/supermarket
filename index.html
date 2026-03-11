@@ -659,8 +659,38 @@
                 justify-content: center;
             }
         }
+
+        /* Add to <style> */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 166, 81, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 166, 81, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 166, 81, 0);
+            }
+        }
+
+        .cart-btn:active {
+            animation: pulse 0.4s;
+        }
     </style>
 </head>
+<!-- Add before </body> -->
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 
 <body>
 
