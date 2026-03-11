@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ - Tsawq.ae</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #00A651;
+            --primary-dark: #008842;
+            --primary-light: #e8f5e9;
+            --secondary: #D4AF37;
+            --dark: #1a1a2e;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+            --white: #ffffff;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --header-height: 70px;
+            --mobile-padding: 16px;
+            --tablet-padding: 24px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 65px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font: inherit;
+            background: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--mobile-padding);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 var(--tablet-padding);
+            }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.6rem;
+            }
+        }
+
+        .nav-links {
+            display: none;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .cart-btn {
+            position: relative;
+            background: var(--primary);
+            color: white;
+            padding: 10px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cart-count {
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            border: 2px solid white;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 60px 0 80px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .page-hero h1 {
+                font-size: 3rem;
+                margin-bottom: 16px;
+            }
+        }
+
+        .page-hero p {
+            font-size: 1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .page-hero p {
+                font-size: 1.15rem;
+            }
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        @media (min-width: 768px) {
+            .section {
+                padding: 80px 0;
+            }
+        }
+
+        .faq-search {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .faq-search input {
+            width: 100%;
+            padding: 16px 20px 16px 50px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius-full);
+            font-size: 15px;
+            background: var(--white);
+        }
+
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .faq-search svg {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--gray);
+        }
+
+        .faq-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background: var(--white);
+            border-radius: var(--radius-full);
+            font-weight: 500;
+            font-size: 14px;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1rem;
+            text-align: left;
+            background: none;
+        }
+
+        @media (min-width: 768px) {
+            .faq-question {
+                font-size: 1.1rem;
+                padding: 24px 28px;
+            }
+        }
+
+        .faq-question:hover {
+            background: var(--gray-light);
+        }
+
+        .faq-question svg {
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question svg {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 24px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 24px;
+        }
+
+        .faq-answer p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .contact-cta {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 60px auto 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-cta h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .contact-cta h3 {
+                font-size: 1.75rem;
+            }
+        }
+
+        .contact-cta p {
+            color: var(--gray);
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s var(--ease-spring);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            opacity: 0.75;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 900;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 6px 10px;
+            color: var(--gray);
+            font-size: 10px;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><i data-lucide="shopping-cart" style="width:26px;height:26px;"></i>
+                Tsawq.ae</a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="faq.html" class="active">FAQ</a>
+            </nav>
+            <a href="cart.html" class="cart-btn"><i data-lucide="shopping-bag" style="width:18px;height:18px;"></i><span
+                    class="cart-count">3</span></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <p>Find answers to common questions about Tsawq.ae</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="faq-search">
+                    <i data-lucide="search"></i>
+                    <input type="search" placeholder="Search for answers..." id="faqSearch">
+                </div>
+
+                <div class="faq-categories">
+                    <button class="category-btn active">All</button>
+                    <button class="category-btn">Orders</button>
+                    <button class="category-btn">Delivery</button>
+                    <button class="category-btn">Payments</button>
+                    <button class="category-btn">Returns</button>
+                </div>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What are your delivery hours?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We deliver from 8 AM to 11 PM daily, including weekends and public holidays. Same-day
+                                delivery is available for orders placed before 4 PM.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What is the minimum order for free delivery?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Free delivery on all orders over AED 150. For orders below AED 150, a delivery fee of AED
+                                15 applies.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How do I track my order?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Once your order is out for delivery, you'll receive an SMS with a tracking link. You can
+                                also track your order from your account page.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What payment methods do you accept?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We accept Cash on Delivery, Apple Pay, Visa, Mastercard, and Tabby (buy now, pay later).
+                                All payments are secured via Telr.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can I return or exchange products?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes! We offer hassle-free returns within 7 days for non-perishable items. Fresh produce
+                                can be returned immediately if not satisfied. Contact our support team for assistance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Are your products Halal certified?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, all our meat and poultry products are 100% Halal certified. We work only with
+                                certified suppliers to ensure compliance with UAE standards.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Do you deliver to all Emirates?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Currently, we deliver to Dubai, Abu Dhabi, and Sharjah. We're expanding to other Emirates
+                                soon. Enter your location at checkout to confirm availability.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How do I apply a promo code?
+                            <i data-lucide="chevron-down" style="width:20px;height:20px;"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Enter your promo code in the cart page before checkout. The discount will be applied
+                                automatically to your order total.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-cta">
+                    <h3>Still Have Questions?</h3>
+                    <p>Our support team is here to help 8 AM - 10 PM daily.</p>
+                    <a href="contact.html" class="btn btn-lg"><i data-lucide="mail"></i> Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Tsawq.ae. All rights reserved. | 🇦🇪 Dubai, UAE</p>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-item"><i data-lucide="home"></i><span>Home</span></a>
+        <a href="about.html" class="nav-item"><i data-lucide="info"></i><span>About</span></a>
+        <a href="cart.html" class="nav-item"><i data-lucide="shopping-bag"></i><span>Cart</span></a>
+        <a href="faq.html" class="nav-item active"><i data-lucide="help-circle"></i><span>FAQ</span></a>
+    </nav>
+
+    <script>
+        lucide.createIcons();
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                const isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+
+                // Open clicked if wasn't active
+                if (!isActive) item.classList.add('active');
+            });
+        });
+
+        // Category buttons
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Search filter
+        document.getElementById('faqSearch')?.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>
