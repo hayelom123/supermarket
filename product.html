@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Almarai Fresh Milk 2L - Tsawq.ae</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #00A651;
+            --primary-dark: #008842;
+            --primary-light: #e8f5e9;
+            --secondary: #D4AF37;
+            --dark: #1a1a2e;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+            --white: #ffffff;
+            --danger: #ef4444;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --radius-full: 9999px;
+            --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --header-height: 70px;
+            --mobile-padding: 16px;
+            --tablet-padding: 24px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-light);
+            color: var(--dark);
+            line-height: 1.6;
+            padding-bottom: 65px;
+        }
+
+        @media (min-width: 768px) {
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            font: inherit;
+            background: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--mobile-padding);
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 var(--tablet-padding);
+            }
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--header-height);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            gap: 12px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 1.6rem;
+            }
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+            margin: 0 12px;
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .search-bar {
+                display: block;
+            }
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            color: var(--gray);
+        }
+
+        .cart-btn {
+            position: relative;
+            background: var(--primary);
+            color: white;
+            padding: 10px 16px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cart-count {
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            border: 2px solid white;
+        }
+
+        .breadcrumb {
+            padding: 16px 0;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+        }
+
+        .breadcrumb span {
+            margin: 0 8px;
+        }
+
+        .product-section {
+            padding: 20px 0 60px;
+        }
+
+        @media (min-width: 768px) {
+            .product-section {
+                padding: 40px 0 80px;
+            }
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 992px) {
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 60px;
+            }
+        }
+
+        .product-image-container {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-image {
+            font-size: 8rem;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .product-image {
+                font-size: 12rem;
+            }
+        }
+
+        .product-gallery {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .gallery-thumb {
+            width: 60px;
+            height: 60px;
+            background: var(--gray-light);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .gallery-thumb:hover,
+        .gallery-thumb.active {
+            background: var(--primary-light);
+            border: 2px solid var(--primary);
+        }
+
+        .product-info h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        @media (min-width: 768px) {
+            .product-info h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: var(--secondary);
+            display: flex;
+            gap: 2px;
+        }
+
+        .review-count {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            margin-bottom: 24px;
+        }
+
+        .price-current {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        @media (min-width: 768px) {
+            .price-current {
+                font-size: 2.5rem;
+            }
+        }
+
+        .price-original {
+            color: var(--gray);
+            text-decoration: line-through;
+            font-size: 1.2rem;
+            margin-left: 12px;
+        }
+
+        .badge {
+            background: var(--danger);
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 12px;
+        }
+
+        .product-description {
+            color: var(--gray);
+            margin-bottom: 24px;
+            line-height: 1.8;
+        }
+
+        .product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .meta-item svg {
+            width: 18px;
+            height: 18px;
+            color: var(--primary);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius);
+            background: var(--gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .qty-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            padding: 16px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            transition: all 0.3s var(--ease-spring);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .wishlist-btn {
+            width: 100%;
+            padding: 14px 28px;
+            background: var(--white);
+            color: var(--dark);
+            border: 2px solid #e5e7eb;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .wishlist-btn:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .product-details {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: 24px;
+            margin-top: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .detail-tabs {
+            display: flex;
+            gap: 24px;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 12px 0;
+            font-weight: 600;
+            color: var(--gray);
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            line-height: 1.8;
+            color: var(--gray);
+        }
+
+        .related-products {
+            padding: 60px 0;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+            }
+        }
+
+        .product-card {
+            background: var(--gray-light);
+            border-radius: var(--radius-lg);
+            padding: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card-emoji {
+            font-size: 3rem;
+            margin-bottom: 12px;
+        }
+
+        .product-card-name {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .product-card-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 12px;
+            opacity: 0.75;
+        }
+
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 900;
+        }
+
+        @media (min-width: 768px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 6px 10px;
+            color: var(--gray);
+            font-size: 10px;
+        }
+
+        .nav-item.active,
+        .nav-item:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+            border-radius: 8px;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--dark);
+            color: white;
+            padding: 12px 20px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 500;
+            z-index: 3000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s var(--ease-spring);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><i data-lucide="shopping-cart" style="width:26px;height:26px;"></i>
+                Tsawq.ae</a>
+            <div class="search-bar">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="search" placeholder="Search products...">
+            </div>
+            <a href="cart.html" class="cart-btn"><i data-lucide="shopping-bag" style="width:18px;height:18px;"></i><span
+                    class="cart-count">3</span></a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> <span>/</span>
+                <a href="#">Dairy & Eggs</a> <span>/</span>
+                <span>Almarai Fresh Milk 2L</span>
+            </div>
+        </div>
+
+        <section class="product-section">
+            <div class="container">
+                <div class="product-grid">
+                    <div class="product-image-container">
+                        <div class="product-image">🥛</div>
+                        <div class="product-gallery">
+                            <div class="gallery-thumb active">🥛</div>
+                            <div class="gallery-thumb">📦</div>
+                            <div class="gallery-thumb">🏷️</div>
+                        </div>
+                    </div>
+
+                    <div class="product-info">
+                        <h1>Almarai Fresh Full Cream Milk 2L</h1>
+
+                        <div class="product-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="review-count">(248 reviews)</span>
+                        </div>
+
+                        <div class="product-price">
+                            <span class="price-current">AED 11.50</span>
+                            <span class="price-original">AED 17.50</span>
+                            <span class="badge">-35%</span>
+                        </div>
+
+                        <p class="product-description">
+                            Fresh, pure, and rich in nutrients. Almarai Full Cream Milk is sourced from healthy cows and
+                            processed to maintain maximum freshness. Perfect for drinking, cooking, or baking.
+                        </p>
+
+                        <div class="product-meta">
+                            <div class="meta-item"><i data-lucide="check-circle"></i> In Stock</div>
+                            <div class="meta-item"><i data-lucide="truck"></i> 60-min Delivery</div>
+                            <div class="meta-item"><i data-lucide="shield-check"></i> Halal Certified</div>
+                        </div>
+
+                        <div class="quantity-selector">
+                            <button class="qty-btn" onclick="updateQty(-1)">−</button>
+                            <span class="qty-value" id="qty">1</span>
+                            <button class="qty-btn" onclick="updateQty(1)">+</button>
+                        </div>
+
+                        <button class="add-to-cart-btn" onclick="addToCart()">
+                            <i data-lucide="shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="wishlist-btn">
+                            <i data-lucide="heart"></i> Add to Wishlist
+                        </button>
+
+                        <div class="product-details">
+                            <div class="detail-tabs">
+                                <button class="tab-btn active">Description</button>
+                                <button class="tab-btn">Nutrition</button>
+                                <button class="tab-btn">Reviews</button>
+                            </div>
+                            <div class="tab-content">
+                                <p><strong>Brand:</strong> Almarai</p>
+                                <p><strong>Size:</strong> 2 Liters</p>
+                                <p><strong>Storage:</strong> Keep refrigerated at 4°C or below</p>
+                                <p><strong>Shelf Life:</strong> 10 days from production date</p>
+                                <p><strong>Country of Origin:</strong> UAE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="related-products">
+            <div class="container">
+                <h2 class="section-title">Related Products</h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-card-emoji">🥛</div>
+                        <div class="product-card-name">Almarai Low Fat Milk 2L</div>
+                        <div class="product-card-price">AED 12.00</div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-emoji">🥛</div>
+                        <div class="product-card-name">Almarai Chocolate Milk 2L</div>
+                        <div class="product-card-price">AED 14.00</div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-emoji">🧀</div>
+                        <div class="product-card-name">Almarai Processed Cheese</div>
+                        <div class="product-card-price">AED 8.50</div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-card-emoji">🥄</div>
+                        <div class="product-card-name">Almarai Yogurt 6-Pack</div>
+                        <div class="product-card-price">AED 10.00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 Tsawq.ae. All rights reserved. | 🇦🇪 Dubai, UAE</p>
+            </div>
+        </div>
+    </footer>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="nav-item"><i data-lucide="home"></i><span>Home</span></a>
+        <a href="#" class="nav-item"><i data-lucide="search"></i><span>Search</span></a>
+        <a href="cart.html" class="nav-item"><i data-lucide="shopping-bag"></i><span>Cart</span></a>
+        <a href="#" class="nav-item"><i data-lucide="user"></i><span>Account</span></a>
+    </nav>
+
+    <div id="toast" class="toast">✅ Added to cart!</div>
+
+    <script>
+        lucide.createIcons();
+        let qty = 1;
+        function updateQty(change) {
+            qty = Math.max(1, qty + change);
+            document.getElementById('qty').textContent = qty;
+        }
+        function addToCart() {
+            const countEl = document.querySelector('.cart-count');
+            countEl.textContent = parseInt(countEl.textContent) + qty;
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+    </script>
+</body>
+
+</html>
