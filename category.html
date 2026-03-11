@@ -12,7 +12,7 @@
         rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* ===== SAME CSS VARIABLES AS HOMEPAGE ===== */
+        /* ===== CSS VARIABLES (Same as Homepage) ===== */
         :root {
             --primary: #00A651;
             --primary-dark: #008842;
@@ -129,7 +129,7 @@
             }
         }
 
-        /* Header - Same as Homepage */
+        /* Header */
         header {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -446,7 +446,7 @@
             color: white;
         }
 
-        /* Products Grid */
+        /* Products Grid - Base */
         .products-section {
             padding: 24px 0 60px;
         }
@@ -455,6 +455,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
+            transition: grid-template-columns 0.3s ease, gap 0.3s ease;
         }
 
         @media (min-width: 480px) {
@@ -478,6 +479,80 @@
             }
         }
 
+        /* ===== LIST VIEW STYLES (FIXED) ===== */
+        .products-grid.list-view {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+        }
+
+        .products-grid.list-view .product-card {
+            flex-direction: row !important;
+            text-align: left !important;
+            align-items: center;
+        }
+
+        .products-grid.list-view .product-image {
+            width: 100px;
+            height: 100px;
+            min-width: 100px;
+            padding: 12px;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid.list-view .product-image {
+                width: 120px;
+                height: 120px;
+                min-width: 120px;
+            }
+        }
+
+        .products-grid.list-view .product-image-inner {
+            font-size: 2.5rem !important;
+        }
+
+        .products-grid.list-view .product-info {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .products-grid.list-view .product-name {
+            min-height: auto !important;
+            font-size: 14px !important;
+            margin-bottom: 4px !important;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid.list-view .product-name {
+                font-size: 16px !important;
+            }
+        }
+
+        .products-grid.list-view .product-price {
+            margin-top: 0 !important;
+        }
+
+        .products-grid.list-view .add-to-cart {
+            opacity: 1 !important;
+            transform: none !important;
+            bottom: 16px !important;
+            right: 16px !important;
+            position: relative !important;
+            margin-top: 12px;
+            align-self: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .products-grid.list-view .add-to-cart {
+                position: absolute !important;
+                margin-top: 0;
+            }
+        }
+
+        /* Product Card - Base */
         .product-card {
             background: var(--white);
             border-radius: var(--radius-xl);
@@ -486,6 +561,8 @@
             transition: all 0.4s var(--ease-spring);
             position: relative;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
@@ -502,6 +579,12 @@
             align-items: center;
             justify-content: center;
             padding: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .product-image {
+                padding: 20px;
+            }
         }
 
         .product-image-inner {
@@ -572,6 +655,15 @@
 
         .product-info {
             padding: 14px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .product-info {
+                padding: 16px;
+            }
         }
 
         .product-name {
@@ -585,6 +677,7 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             line-height: 1.5;
+            color: var(--dark);
         }
 
         @media (min-width: 768px) {
@@ -598,13 +691,19 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            margin-top: 8px;
+            margin-top: auto;
         }
 
         .price-current {
             font-size: 1.1rem;
             font-weight: 800;
             color: var(--primary);
+        }
+
+        @media (min-width: 768px) {
+            .price-current {
+                font-size: 1.25rem;
+            }
         }
 
         .price-original {
@@ -657,33 +756,17 @@
             padding: 0 16px;
         }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .empty-icon {
-            font-size: 5rem;
-            margin-bottom: 20px;
-        }
-
-        .empty-state h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .empty-state p {
-            color: var(--gray);
-            margin-bottom: 24px;
-        }
-
-        /* Footer - Same as Homepage */
+        /* Footer */
         footer {
             background: var(--dark);
             color: white;
             padding: 40px 0 20px;
+        }
+
+        @media (min-width: 768px) {
+            footer {
+                padding: 60px 0 30px;
+            }
         }
 
         .footer-grid {
@@ -705,6 +788,12 @@
             margin: 16px 0 20px;
             font-size: 13px;
             line-height: 1.7;
+        }
+
+        @media (min-width: 768px) {
+            .footer-brand p {
+                font-size: 14px;
+            }
         }
 
         .social-links {
@@ -756,7 +845,7 @@
             opacity: 0.75;
         }
 
-        /* Mobile Nav - Same as Homepage */
+        /* Mobile Nav */
         .mobile-nav {
             position: fixed;
             bottom: 0;
@@ -918,7 +1007,6 @@
         <section class="products-section">
             <div class="container">
                 <div class="products-grid" id="products-grid"></div>
-
                 <!-- Pagination -->
                 <div class="pagination">
                     <button class="page-btn prev"><i data-lucide="chevron-left"
@@ -990,7 +1078,7 @@
     <script>
         lucide.createIcons();
 
-        // Get category from URL or default
+        // Category from URL
         const urlParams = new URLSearchParams(window.location.search);
         const category = urlParams.get('category') || 'fresh';
         const categoryNames = {
@@ -1003,8 +1091,6 @@
             'snacks': { name: 'Snacks', emoji: '🍫' },
             'frozen': { name: 'Frozen Foods', emoji: '🧊' }
         };
-
-        // Update category info
         document.getElementById('category-name').textContent = categoryNames[category]?.name || 'Products';
         document.getElementById('category-title-text').textContent = categoryNames[category]?.name || 'Products';
         document.getElementById('category-emoji').textContent = categoryNames[category]?.emoji || '🛒';
@@ -1024,12 +1110,12 @@
             { id: 11, name: 'Fresh Garlic 250g', price: 4.50, old: 6.00, emoji: '🧄', rating: 4.3, reviews: 67, badge: '-25%' },
             { id: 12, name: 'Fresh Ginger 250g', price: 5.50, old: 7.50, emoji: '🫚', rating: 4.6, reviews: 94, badge: '-27%' },
         ];
-
         document.getElementById('product-count').textContent = products.length;
 
         // Render products
         function renderProducts() {
             const grid = document.getElementById('products-grid');
+            const isListView = grid.classList.contains('list-view');
             grid.innerHTML = products.map((p, i) => `
         <article class="product-card" style="animation: fade-in 0.4s ease ${i * 0.05}s backwards;">
           ${p.badge ? `<span class="badge">${p.badge}</span>` : ''}
@@ -1064,7 +1150,6 @@
             setTimeout(() => { btn.classList.remove('added'); btn.innerHTML = '+'; }, 1500);
             showToast(`✅ ${productName} added!`);
         }
-
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toastMessage').textContent = message;
@@ -1072,44 +1157,58 @@
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
 
-        // Filter functionality
+        // Filter interactions
         document.getElementById('sort-select')?.addEventListener('change', (e) => {
             showToast(`🔄 Sorting by ${e.target.options[e.target.selectedIndex].text}`);
         });
-
         document.getElementById('price-filter')?.addEventListener('change', (e) => {
             showToast(`💰 Filtering: ${e.target.options[e.target.selectedIndex].text}`);
         });
 
-        // View toggle
-        document.getElementById('grid-view')?.addEventListener('click', function () {
-            this.classList.add('active');
-            document.getElementById('list-view').classList.remove('active');
-            document.getElementById('products-grid').style.gridTemplateColumns = 'repeat(2, 1fr)';
+        // ===== FIXED VIEW TOGGLE =====
+        const gridViewBtn = document.getElementById('grid-view');
+        const listViewBtn = document.getElementById('list-view');
+        const productsGrid = document.getElementById('products-grid');
+
+        function setGridView() {
+            gridViewBtn.classList.add('active');
+            listViewBtn.classList.remove('active');
+            productsGrid.classList.remove('list-view');
+            productsGrid.style.gridTemplateColumns = '';
+            productsGrid.style.gap = '';
+            localStorage.setItem('tsawq_view', 'grid');
+            renderProducts();
+            showToast('🔲 Grid view');
+        }
+        function setListView() {
+            listViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+            productsGrid.classList.add('list-view');
+            productsGrid.style.gridTemplateColumns = '1fr';
+            productsGrid.style.gap = '12px';
+            localStorage.setItem('tsawq_view', 'list');
+            renderProducts();
+            showToast('📋 List view');
+        }
+        gridViewBtn?.addEventListener('click', setGridView);
+        listViewBtn?.addEventListener('click', setListView);
+
+        // Restore view preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedView = localStorage.getItem('tsawq_view');
+            if (savedView === 'list') setListView();
+            renderProducts();
         });
 
-        document.getElementById('list-view')?.addEventListener('click', function () {
-            this.classList.add('active');
-            document.getElementById('grid-view').classList.remove('active');
-            document.getElementById('products-grid').style.gridTemplateColumns = '1fr';
-        });
-
-        // Search
+        // Search & header scroll
         document.querySelector('.search-bar input')?.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && e.target.value.trim()) {
-                showToast(`🔍 Searching for "${e.target.value}"...`);
-            }
+            if (e.key === 'Enter' && e.target.value.trim()) showToast(`🔍 Searching for "${e.target.value}"...`);
         });
-
-        // Header scroll
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 50) header.classList.add('scrolled');
             else header.classList.remove('scrolled');
         });
-
-        // Initialize
-        renderProducts();
     </script>
 </body>
 
