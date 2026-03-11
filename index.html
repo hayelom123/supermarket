@@ -2244,7 +2244,7 @@
         function renderCategories() {
             const grid = document.getElementById('category-grid');
             grid.innerHTML = categories.map((cat, i) => `
-        <a href="product.html" class="category-card reveal stagger-${(i % 4) + 1}">
+        <a href="category.html?category=${cat.name.toLowerCase().split(' ')[0]}" class="category-card reveal stagger-${(i % 4) + 1}">
           <div class="category-icon">${cat.emoji}</div>
           <div class="category-name">${cat.name}</div>
         </a>
